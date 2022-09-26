@@ -42,10 +42,12 @@
 using System.Reflection.Metadata;
 
 Console.Write("Inserisci il nome del tuo programma Eventi: ");
-ProgramEvents newEvents = new(Console.ReadLine() ?? "") ;
+string programName = Console.ReadLine() ?? "" ;
 
 Console.Write("Indica il numero di eventi da inserire: ");
  int eventsLength = Convert.ToInt32(Console.ReadLine());
+
+ProgramEvents newEvents = new ProgramEvents(programName);
 
 while (newEvents.PrintListEventsCount() < eventsLength)
 {
