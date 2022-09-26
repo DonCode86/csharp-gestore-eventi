@@ -68,4 +68,15 @@ while (newEvents.PrintListEventsCount() < eventsLength)
         Console.WriteLine(e.Message);
     }
     newEvents.AddEvent(newEvent);
+    //Console.WriteLine(newEvent.ToString());
 }
+
+Console.WriteLine();
+Console.WriteLine("Il numero di eventi nel programma è: "+ newEvents.PrintListEventsCount());
+Console.WriteLine("Ecco il tuo programma eventi:");
+Console.WriteLine(newEvents.ToString());
+
+Console.WriteLine("Inserisci una data per sapere che eventi ci saranno (gg/mm/yyyy)");
+string dateSearch = Console.ReadLine() ?? "";
+
+newEvents.EventsReset();
