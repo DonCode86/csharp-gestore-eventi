@@ -9,6 +9,7 @@ public class Event
     private string v1;
     private int v2;
     private int v3;
+    private string? date1;
 
     public DateOnly Date
     {
@@ -17,7 +18,7 @@ public class Event
         {
             if (date < DateOnly.FromDateTime(DateTime.Now))
             {
-                throw new ArgumentException("La data non può essere antecedente alla data odierna!");
+                Console.WriteLine("La data non può essere antecedente alla data odierna!");
             }    
         }
     }
@@ -39,12 +40,20 @@ public class Event
         this.v3 = v3;
     }
 
+    public Event(string? title, string? date1, int maxOccupancy)
+    {
+        Title = title;
+        this.date1 = date1;
+        MaxOccupancy = maxOccupancy;
+    }
+
     public override string ToString()
     {
         return $"{Title} - {Date:dd/MM/yyyy}";
     }
     public void ReserveSeat(int seats)
     {
+   
         if (ReservedSeats + seats > MaxOccupancy)
         {
             Console.WriteLine("Spiacente, non ci sono piu' posti liberi.");
@@ -53,6 +62,11 @@ public class Event
             Console.WriteLine("Spiacente, l'evento si e' già tenuto");
         }
         ReservedSeats += seats;
+    }
+
+    public int GetAvailableSeats()
+    {
+        return MaxOccupancy - ReservedSeats;
     }
 
     public void CancelSeat(int seats)
