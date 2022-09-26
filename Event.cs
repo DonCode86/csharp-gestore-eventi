@@ -5,18 +5,18 @@ public class Event
 {
     public string Title { get; set; }
 
-    private DateOnly date;
+    private DateTime date;
     private string v1;
     private int v2;
     private int v3;
     private string? date1;
 
-    public DateOnly Date
+    public DateTime Date
     {
         get => date;
         set
         {
-            if ( DateOnly.FromDateTime(DateTime.Now) > date)
+            if ( DateTime.Now > date)
             {
                 Console.WriteLine("La data non può essere antecedente alla data odierna!");
             }    
@@ -25,7 +25,7 @@ public class Event
     public int MaxOccupancy { get; }
     public int ReservedSeats { get; private set; }
 
-    public Event(string title, DateOnly date, int maxOccupancy)
+    public Event(string title, DateTime date, int maxOccupancy)
     {
         Title = title;
         this.date = date;
@@ -57,7 +57,7 @@ public class Event
         if (ReservedSeats + seats > MaxOccupancy)
         {
             Console.WriteLine("Spiacente, non ci sono piu' posti liberi.");
-        } else if (DateOnly.FromDateTime(DateTime.Now) < date)
+        } else if (DateTime.Now > date)
         {
             Console.WriteLine("Spiacente, l'evento si e' già tenuto");
         }
@@ -75,7 +75,7 @@ public class Event
         {
             Console.WriteLine("Non ci sono posti da annullare!");
         }
-        else if (date < DateOnly.FromDateTime(DateTime.Now))
+        else if (DateTime.Now > date)
         {
             Console.WriteLine("Spiacente, l'evento si e' già tenuto");
         }
