@@ -7,12 +7,12 @@ Console.Write("Inserisci la data dell'evento (gg/mm/yyyy): ");
 string date = Console.ReadLine();
 
 Console.Write("Inserisci il numero di posti totali: ");
-int maxOccupancy = Convert.ToInt32 (Console.ReadLine());
+int maxOccupancy = Convert.ToInt32 (Console.ReadLine() ?? "0");
 
 Event newEvent = new Event(title, date, maxOccupancy);
 
 Console.Write("Quanti posti desideri prenotare? ");
-int reservedSeats = Convert.ToInt32 (Console.ReadLine());
+int reservedSeats = Convert.ToInt32 (Console.ReadLine() ?? "0");
 newEvent.ReserveSeat(reservedSeats);
 
 Console.WriteLine("---------------------------------------------");
@@ -28,7 +28,7 @@ do
     if (!string.IsNullOrEmpty(userChoice) && userChoice == "si")
     {
         Console.Write("Indica il numero di posti da disdire: ");
-        int userCancelSeatsChoice = Convert.ToInt32 (Console.ReadLine());
+        int userCancelSeatsChoice = Convert.ToInt32 (Console.ReadLine() ?? "0");
         newEvent.CancelSeat(userCancelSeatsChoice);
     } else
     {
