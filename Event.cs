@@ -16,7 +16,7 @@ public class Event
         get => date;
         set
         {
-            if (date < DateOnly.FromDateTime(DateTime.Now))
+            if ( DateOnly.FromDateTime(DateTime.Now) > date)
             {
                 Console.WriteLine("La data non può essere antecedente alla data odierna!");
             }    
@@ -57,7 +57,7 @@ public class Event
         if (ReservedSeats + seats > MaxOccupancy)
         {
             Console.WriteLine("Spiacente, non ci sono piu' posti liberi.");
-        } else if (date < DateOnly.FromDateTime(DateTime.Now))
+        } else if (DateOnly.FromDateTime(DateTime.Now) < date)
         {
             Console.WriteLine("Spiacente, l'evento si e' già tenuto");
         }
