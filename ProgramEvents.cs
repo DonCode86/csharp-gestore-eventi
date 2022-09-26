@@ -30,7 +30,7 @@ public class ProgramEvents
         }
     }
 
-    public static void PrintEvents (List<Event> events)
+    public void PrintEvents (List<Event> events)
     {
         foreach(Event e in events)
         {

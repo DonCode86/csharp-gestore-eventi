@@ -39,6 +39,7 @@
 //    Console.WriteLine($"Numero di posti disponibili = {newEvent.GetAvailableSeats()}");
 //} while (userChoice == "si");
 
+using System.Diagnostics.Tracing;
 using System.Reflection.Metadata;
 
 Console.Write("Inserisci il nome del tuo programma Eventi: ");
@@ -49,29 +50,31 @@ Console.Write("Indica il numero di eventi da inserire: ");
 
 ProgramEvents newEvents = new ProgramEvents(programName);
 
-while (newEvents.PrintListEventsCount() < eventsLength)
-{
-    Event newEvent = null;
-    Console.WriteLine();
-    Console.Write("Inserisci il nome dell'evento: ");
-    string title = Console.ReadLine() ?? "";
-
-    Console.Write("Inserisci la data dell'evento (gg/mm/yyyy): ");
-    string date = Console.ReadLine() ?? "";
-
-    Console.Write("Inserisci il numero di posti totali: ");
-    int totalSeats = Convert.ToInt32(Console.ReadLine() ?? "");
-    try
+    while (newEvents.PrintListEventsCount() < eventsLength)
     {
-        newEvent = new Event(title, date, totalSeats);
+        Event newEvent = null;
+        Console.WriteLine();
+        Console.Write("Inserisci il nome dell'evento: ");
+        string title = Console.ReadLine() ?? "";
+
+        Console.Write("Inserisci la data dell'evento (gg/mm/yyyy): ");
+        string date = Console.ReadLine() ?? "";
+
+        Console.Write("Inserisci il numero di posti totali: ");
+        int totalSeats = Convert.ToInt32(Console.ReadLine() ?? "");
+        try
+        {
+            newEvent = new Event(title, date, totalSeats);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        newEvents.AddEvent(newEvent);
+        Console.WriteLine("Il riepilogo dell'evento è: " + newEvent.ToString());
     }
-    catch (Exception e)
-    {
-        Console.WriteLine(e.Message);
-    }
-    newEvents.AddEvent(newEvent);
-    //Console.WriteLine(newEvent.ToString());
-}
+    
+
 
 Console.WriteLine();
 Console.WriteLine("Il numero di eventi nel programma è: "+ newEvents.PrintListEventsCount());
